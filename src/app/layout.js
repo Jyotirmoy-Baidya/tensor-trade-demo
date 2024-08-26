@@ -11,6 +11,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=CPMono:wght@400;700&display=swap"
         />
+        <link rel='stylesheet' href='./globals.css' />
       </head>
       <body>
         <ChakraProvider >

@@ -22,6 +22,8 @@ import { IoMdSettings } from "react-icons/io";
 const Navbar = () => {
     return (
         <Flex
+            borderBottom={'1px'}
+            borderColor={'gray.800'}
             as="nav"
             width="full"
             py={1}
