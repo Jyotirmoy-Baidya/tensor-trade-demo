@@ -31,8 +31,9 @@ const Navbar = () => {
             align="center"
             letterSpacing="wide"
             color="white"
-
             bg='black'
+            height={'50px'}
+            zIndex={20}
         >
             <Flex bg="black" color="gray.900" height='40px' alignItems="center">
                 <Flex height="32px" width={'32px'}>

@@ -5,7 +5,7 @@ import './globals.css'
 import Image from "next/image";
 import Body from "@/components/Body";
 
-export default function Home() {
+const Home = () => {
   return (
     <Flex bg="black" direction={'column'} height={'100vh'}>
       <Navbar />
@@ -13,3 +13,5 @@ export default function Home() {
     </Flex>
   );
 }
+
+export default Home;

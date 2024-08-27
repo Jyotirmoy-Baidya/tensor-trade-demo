@@ -1,3 +1,22 @@
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
+
+/* Designing scrollbar  */
+.design-scrollbar {
+    overflow: auto;
+}
+
+.design-scrollbar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.design-scrollbar::-webkit-scrollbar-track {
+    background: #2e2e2e;
+}
+
+.design-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #007acc;
+    border-radius: 10px;
+    border: 3px solid #2e2e2e;
+}

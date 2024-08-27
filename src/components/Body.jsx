@@ -17,14 +17,25 @@ import {
 import NFTBox from './NFtBox';
 import InfoBar from './InfoBar';
 import BodyNav from './BodyNav';
-const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+import ConnectPopUp from './ConnectPopUp';
+const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
 const Body = () => {
     const [collection, setCollection] = useState(false);
 
     const [select, setSelect] = useState(0);
+    const [connectPopUp, setConnectPopUp] = useState(false);
+
+    const closePopUp = () => {
+        setConnectPopUp(false);
+    }
+
+    const openPopUp = () => {
+        setConnectPopUp(true);
+        console.log("chde")
+    }
     return (
-        <HStack maxWidth={'100vw'} spacing={0} flexGrow={1} alignItems={'start'}>
+        <HStack flex='1' overflow={'hidden'} spacing={0} maxWidth={'100vw'} flexGrow={1} alignItems={'start'}>
             {collection &&
                 <Flex borderRight={'1px'} borderColor={'gray.800'} bg='black' height={'100%'} minWidth={'370px'} width={'370px'} p={3} direction={'column'}>
                     <Heading color={'white'} paddingBottom={3} letterSpacing={1} fontWeight='800' size={'sm'} textTransform={'uppercase'}>
@@ -85,19 +96,20 @@ const Body = () => {
                     </TableContainer>
                 </Flex>
             }
-            <Stack width="100%" overflowX="auto" direction={'column'}>
+            <Stack flex={1} height={'100%'} width={1} className='hide-scrollbar' direction={'column'}>
                 <InfoBar collection={collection} setCollection={setCollection} />
                 <BodyNav collection={collection} setCollection={setCollection} setSelect={setSelect} select={select} />
-                <Grid bg='black' height={'fit-content'} templateColumns={{
+                <Grid flex={1} bg='black' px={2} py={1} flexGrow={1} MaxWidth={'100%'} overflowX={'hidden'} overflowY={'scroll'} className='design-scrollbar' templateColumns={{
                     base: 'repeat(2, 1fr)', lg: `${collection == true ? 'repeat(8, 1fr)' : 'repeat(11, 1fr)'}`
                 }}>
                     {
                         arr.map((ele, i) => (
-                            <GridItem w='100%' key={i}><NFTBox /></GridItem>
+                            <GridItem w='100%' key={i}><NFTBox openPopUp={openPopUp} /></GridItem>
                         ))
                     }
                 </Grid>
             </Stack>
+            {connectPopUp && <ConnectPopUp closePopUp={closePopUp} />}
         </HStack>
     )
 }

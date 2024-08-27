@@ -2,20 +2,19 @@ import { Box, Image, Text, Stack, Button, Flex, Icon, IconButton, Popover, Popov
 import { useState } from 'react';
 import { RiCopperDiamondFill, RiVipDiamondFill } from "react-icons/ri";
 import { IoEllipsisHorizontalOutline } from "react-icons/io5";
-export default function NFTBox() {
+const NFTBox = ({ openPopUp }) => {
     const [isHovered, setIsHovered] = useState(false);
 
+
     return (
-        <Flex p={1}>
+        <Flex p={1} width={'auto'}>
             <Box
                 bg="gray.900"
                 borderRadius="md"
-                overflow="hidden"
                 boxShadow="md"
                 position="relative"
                 transition="transform 0.2s, box-shadow 0.2s"
                 _hover={{ boxShadow: 'xl' }}
-
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -26,42 +25,72 @@ export default function NFTBox() {
                     width={'100%'}
                 />
                 <Stack spacing={'2px'} p={2}>
-                    {/* <Popover placement='bottom' trigger="hover">
+                    <Popover placement='bottom' trigger="hover">
                         <PopoverTrigger>
-                            <Flex>
-                                <Text zIndex={20} fontFamily={'mono'} color="white" fontWeight="bold">
-                                    26.12
-                                </Text>
-                            </Flex>
+                            <Text cursor={'pointer'} zIndex={5} fontFamily={'mono'} color="white" fontWeight="bold">
+                                26.12
+                            </Text>
                         </PopoverTrigger>
                         <PopoverContent bg='black'
-                            zIndex={30}
+                            zIndex={10}
                             borderRadius={'md'}
                             filter="drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.6))" width={'fit-content'} border={0}>
-                            <PopoverBody fontSize={'sm'} fontWeight={'bold'} color={'white'} fontFamily={'mono'} borderRadius={'inherit'} textAlign={'center'} width={'fit-content'} px={4} py={2}>Collection Stats</PopoverBody>
+                            <PopoverBody fontSize={'sm'} fontWeight={'bold'} color={'white'} fontFamily={'mono'} borderRadius={'inherit'} textAlign={'center'} width={'fit-content'} px={4} py={2}>
+                                <Stack spacing={0} alignItems={'start'} cursor={'pointer'}>
+                                    <Text>Base: 28.08</Text>
+                                    <Text>Royalties: 0.00 [0.00%]</Text>
+                                    <Text>Taker Fee: 0.00 [0.00%]</Text>
+                                    <Text>Full [incl. fees/royalties]: 28.08</Text>
+                                </Stack>
+                            </PopoverBody>
                         </PopoverContent>
-                    </Popover> */}
-                    <Text zIndex={10} fontFamily={'mono'} color="white" fontWeight="bold">
-                        26.12
-                    </Text>
-                    <Text zIndex={20} fontSize={'13px'} fontFamily={'mono'} color="gray.400">
-                        25.28
-                    </Text>
-                    <Box
-                        bg="gray.700"
-                        borderRadius="full"
-                        d="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                    </Box>
+                    </Popover>
+                    <Flex>
+                        <Popover placement='bottom' trigger="hover">
+                            <PopoverTrigger>
+                                <Text cursor={'pointer'} zIndex={5} fontSize={'13px'} fontFamily={'mono'} color="gray.400">
+                                    25.28
+                                </Text>
+                            </PopoverTrigger>
+                            <PopoverContent bg='black'
+                                zIndex={10}
+                                borderRadius={'md'}
+                                filter="drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.6))" width={'fit-content'} border={0}>
+                                <PopoverBody fontSize={'sm'} fontWeight={'bold'} color={'white'} fontFamily={'mono'} borderRadius={'inherit'} textAlign={'center'} width={'fit-content'} px={4} py={2}>
+                                    Last sale at: 8/8/24, 10:34:10 PM
+                                </PopoverBody>
+                            </PopoverContent>
+                        </Popover>
+
+                        <Flex
+                            borderRadius="md"
+                            position='absolute'
+                            height={'23px'}
+                            minWidth={'30px'}
+                            zIndex={5}
+                            fontSize={'12px'}
+                            justifyContent={'center'}
+                            alignItems={'end'}
+                            bottom={1}
+                            right={1}
+                            color={'white'}
+                            border={'1px'}
+                            borderColor={'gray.400'}
+                            cursor={'pointer'}
+                            bg="transparent"
+                            _hover={{ bg: 'cyan.200', color: 'black' }}>
+                            <Icon
+                                as={IoEllipsisHorizontalOutline}
+                            />
+                        </Flex>
+                    </Flex>
                 </Stack>
                 <Flex
                     borderRadius="full"
                     position='absolute'
                     height={'23px'}
                     minWidth={'23px'}
-                    zIndex={10}
+                    zIndex={5}
                     justifyContent={'center'}
                     alignItems={'center'}
                     fontSize={'12px'}
@@ -75,27 +104,7 @@ export default function NFTBox() {
                     />
                 </Flex>
 
-                <Flex
-                    borderRadius="md"
-                    position='absolute'
-                    height={'23px'}
-                    minWidth={'30px'}
-                    zIndex={20}
-                    fontSize={'12px'}
-                    justifyContent={'center'}
-                    alignItems={'end'}
-                    bottom={1}
-                    right={1}
-                    color={'white'}
-                    border={'1px'}
-                    borderColor={'gray.400'}
-                    cursor={'pointer'}
-                    bg="transparent"
-                    _hover={{ bg: 'cyan.200', color: 'black' }}>
-                    <Icon
-                        as={IoEllipsisHorizontalOutline}
-                    />
-                </Flex>
+
 
 
 
@@ -123,10 +132,10 @@ export default function NFTBox() {
                                 display="flex"
                                 gap={2}
                             >
-                                <Button width={10} height={5} bg="teal.400" fontFamily={'mono'} _hover={{ bg: 'teal.200' }}>
+                                <Button width={10} height={5} bg="teal.400" fontFamily={'mono'} _hover={{ bg: 'teal.200' }} onClick={() => openPopUp()}>
                                     BUY
                                 </Button>
-                                <Button width={10} height={5} bg='yellow.400' fontFamily={'mono'} _hover={{ bg: 'yellow.200' }}>
+                                <Button width={10} height={5} bg='yellow.400' fontFamily={'mono'} _hover={{ bg: 'yellow.200' }} onClick={() => openPopUp()}>
                                     BID
                                 </Button>
                             </Box>
@@ -134,7 +143,10 @@ export default function NFTBox() {
                         </Flex>
                     )
                 }
-            </Box >
-        </Flex >
+            </Box>
+        </Flex>
     );
 }
+
+
+export default NFTBox;

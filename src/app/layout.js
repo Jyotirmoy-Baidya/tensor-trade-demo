@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
         />
         <link rel='stylesheet' href='./globals.css' />
       </head>
-      <body>
+      <body style={{ maxHeight: '100vh' }}>
         <ChakraProvider >
           {children}
         </ChakraProvider>
