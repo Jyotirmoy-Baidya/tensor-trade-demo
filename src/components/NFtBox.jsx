@@ -2,6 +2,7 @@ import { Box, Image, Text, Stack, Button, Flex, Icon, IconButton, Popover, Popov
 import { useState } from 'react';
 import { RiCopperDiamondFill, RiVipDiamondFill } from "react-icons/ri";
 import { IoEllipsisHorizontalOutline } from "react-icons/io5";
+import PopOverBlock from './PopOverBlock';
 const NFTBox = ({ openPopUp }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -25,42 +26,33 @@ const NFTBox = ({ openPopUp }) => {
                     width={'100%'}
                 />
                 <Stack spacing={'2px'} p={2}>
-                    <Popover placement='bottom' trigger="hover">
-                        <PopoverTrigger>
-                            <Text cursor={'pointer'} zIndex={5} fontFamily={'mono'} color="white" fontWeight="bold">
-                                26.12
-                            </Text>
-                        </PopoverTrigger>
-                        <PopoverContent bg='black'
-                            zIndex={10}
-                            borderRadius={'md'}
-                            filter="drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.6))" width={'fit-content'} border={0}>
-                            <PopoverBody fontSize={'sm'} fontWeight={'bold'} color={'white'} fontFamily={'mono'} borderRadius={'inherit'} textAlign={'center'} width={'fit-content'} px={4} py={2}>
-                                <Stack spacing={0} alignItems={'start'} cursor={'pointer'}>
-                                    <Text>Base: 28.08</Text>
-                                    <Text>Royalties: 0.00 [0.00%]</Text>
-                                    <Text>Taker Fee: 0.00 [0.00%]</Text>
-                                    <Text>Full [incl. fees/royalties]: 28.08</Text>
-                                </Stack>
-                            </PopoverBody>
-                        </PopoverContent>
-                    </Popover>
+                    <PopOverBlock div={
+                        <Text cursor={'pointer'} zIndex={5} fontFamily={'mono'} color="white" fontWeight="bold">
+                            26.12
+                        </Text>
+                    }
+                        popoverBlock={
+                            <Stack spacing={0} alignItems={'start'} cursor={'pointer'}>
+                                <Text>Base: 28.08</Text>
+                                <Text>Royalties: 0.00 [0.00%]</Text>
+                                <Text>Taker Fee: 0.00 [0.00%]</Text>
+                                <Text>Full [incl. fees/royalties]: 28.08</Text>
+                            </Stack>
+                        }
+                    />
+
                     <Flex>
-                        <Popover placement='bottom' trigger="hover">
-                            <PopoverTrigger>
+                        <PopOverBlock
+                            div={
                                 <Text cursor={'pointer'} zIndex={5} fontSize={'13px'} fontFamily={'mono'} color="gray.400">
                                     25.28
                                 </Text>
-                            </PopoverTrigger>
-                            <PopoverContent bg='black'
-                                zIndex={10}
-                                borderRadius={'md'}
-                                filter="drop-shadow(2px 2px 6px rgba(255, 255, 255, 0.6))" width={'fit-content'} border={0}>
-                                <PopoverBody fontSize={'sm'} fontWeight={'bold'} color={'white'} fontFamily={'mono'} borderRadius={'inherit'} textAlign={'center'} width={'fit-content'} px={4} py={2}>
-                                    Last sale at: 8/8/24, 10:34:10 PM
-                                </PopoverBody>
-                            </PopoverContent>
-                        </Popover>
+                            }
+                            popoverBlock={
+                                <>Last sale at: 8/8/24, 10:34:10 PM</>
+                            }
+                        />
+
 
                         <Flex
                             borderRadius="md"
